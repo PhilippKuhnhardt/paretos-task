@@ -18,7 +18,7 @@ def calc2(input):
     return input * input
 
 def calc3(input):
-    return input ** 2
+    return 2 ** input
 
 # In a real application the user would be dynamically generated and stored in a db
 users = [User("Philipp", generate_password_hash("password"), ["model1", "model2"]), User("Éric", generate_password_hash("strong_password"), ["model3"])]
