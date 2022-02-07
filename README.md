@@ -12,42 +12,46 @@ This was programmed on python 3.10.2. Be sure to check that your interpreter and
 
 # How to use
 
-To use a model, send a POST request to: http://127.0.0.1:5000/models/<modelId>
-The body needs to contain a JSON object with the required input parameters.
-You need to authenticate yourself via Basic Auth to use a model.
+- To use a model, send a POST request to: http://127.0.0.1:5000/models/<modelId>
+- The body needs to contain a JSON object with the required input parameters
+- You need to authenticate yourself via Basic Auth to use a model
+- You can use GET http://127.0.0.1:5000/models to check what models you have access to with your user
 
 
 # Available users:
 
-User: Philipp
-Password: password
-Available Models: multiplicationModel, sumModel
+- User: Philipp
+- Password: password
+- Available Models: multiplicationModel, sumModel
 
-User: Éric
-Password: strong_password
-Available Models: divisionModel
+
+- User: Éric
+- Password: strong_password
+- Available Models: divisionModel
 
 
 # Models:
 
-ModelId: multiplicationModel
-Inputs: "number1", "number2"
-Outputs: The numbers multiplicated
+- ModelId: multiplicationModel
+- Inputs: "number1", "number2"
+- Outputs: The numbers multiplicated
 
-ModelId: sumModel
-Inputs: "number1", "number2", "number2"
-Outputs: The numbers summed up
 
-ModelId: divisionModel
-Inputs: "number1", "number2"
-Outputs: The numbers divided
+- ModelId: sumModel
+- Inputs: "number1", "number2", "number2"
+- Outputs: The numbers summed up
+
+
+- ModelId: divisionModel
+- Inputs: "number1", "number2"
+- Outputs: The numbers divided
 
 
 # What needs to be improved:
 
 This is obviously not even close to finished. There are several issues that would need to be tackled before it could be considered "finished":
 - It's not very dynamic, you can't just add a model and be done with it, you need to hardcode it into the code
-  --> Ideally I just want to add a .py-file for a model and register it in another file
+- -> Ideally I just want to add a .py-file for a model and register it in another file
 - You can't create / update users, users and hashed pws aren't stored in a db, you can't assign models to users dynamically
 - Lack of testing
 - The API doesn't give you good feedback why it doesn't work

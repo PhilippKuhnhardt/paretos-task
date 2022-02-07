@@ -22,11 +22,11 @@ def verify_password(username, password):
 def get_user_roles(user: User):
     return user.model_access
 
-@app.route('/')
+@app.route('/models')
 @auth.login_required
 def index():
     user: User = auth.current_user()
-    return "Hello, {}. Models you have access to: {}!".format(user.name, ", ".join(str(x) for x in user.model_access))
+    return ", ".join(str(x) for x in user.model_access)
 
 @app.route('/models/<model_id>', methods = ['POST'])
 @auth.login_required
