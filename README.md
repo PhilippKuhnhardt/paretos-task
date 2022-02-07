@@ -12,10 +12,10 @@ This was programmed on python 3.10.2. Be sure to check that your interpreter and
 
 # How to use
 
-- To use a model, send a POST request to: http://127.0.0.1:5000/models/<modelId>
+- To use a model, send a POST request to: `http://127.0.0.1:5000/models/<modelId>`
 - The body needs to contain a JSON object with the required input parameters
 - You need to authenticate yourself via Basic Auth to use a model
-- You can use GET http://127.0.0.1:5000/models to check what models you have access to with your user
+- You can use GET `http://127.0.0.1:5000/models` to check what models you have access to with your user
 
 
 # Available users:
