@@ -1,11 +1,11 @@
 from asyncio.windows_events import NULL
-from operator import truediv
-from pickle import FALSE
+import importlib
 from flask import Flask, request, abort
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
+from model_interface import ModelInterface
 from user import User
-from model import Model
+from model_pointer import ModelPointer
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
@@ -21,8 +21,8 @@ def calc3(input):
     return 2 ** input
 
 # In a real application the user would be dynamically generated and stored in a db
-users = [User("Philipp", generate_password_hash("password"), ["model1", "model2"]), User("Éric", generate_password_hash("strong_password"), ["model3"])]
-models = [Model("model1", calc1), Model("model2", calc2), Model("model3", calc3)]
+users = [User("Philipp", generate_password_hash("password"), ["multiplicationModel", "sumModel"]), User("Éric", generate_password_hash("strong_password"), ["divisionModel"])]
+model_pointers = [ModelPointer("multiplicationModel", "models.multiplication_model", "MultiplicationModel"), ModelPointer("sumModel", "models.sum_model", "SumModel"), ModelPointer("divisionModel", "models.division_model", "DivisionModel")]
 
 @auth.verify_password
 def verify_password(username, password):
@@ -41,15 +41,20 @@ def index():
 @app.route('/models/<model_id>', methods = ['POST'])
 @auth.login_required
 def calc_model(model_id):
+    
     user: User = auth.current_user()
-    model = next((model for model in models if model.id == model_id and model_id in user.model_access), None)
-    if(model is None):
+    model_pointer = next((model_pointer for model_pointer in model_pointers if model_pointer.id == model_id and model_id in user.model_access), None)
+
+    if(model_pointer is None):
         return abort(404)
 
-    json = request.get_json() 
-    result = model.calc(int(json['number']))
-    return str(result)
+    model_module = importlib.import_module(model_pointer.path)
+    model: ModelInterface = getattr(model_module, model_pointer.name)()
 
-    
+    json = request.get_json() 
+    if(model.set_parameters(json)):
+        return str(model.calc())  
+    else:
+        return abort(400)
 
         
