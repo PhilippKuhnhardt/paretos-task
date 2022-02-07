@@ -2,3 +2,6 @@
 .venv
 venv/
 venv.bak/
+
+# Cache
+__pycache__/
