@@ -1,13 +1,13 @@
 # How to run
 
-1. Install venv: py -3 -m venv venv
-2. Activate venv: venv\Scripts\activate
+1. Install venv: `py -3 -m venv venv`
+2. Activate venv: `venv\Scripts\activate`
 
 This was programmed on python 3.10.2. Be sure to check that your interpreter and the version in venv/pyvenv.cfg is 3.10.2, or it may not work properly.
 
-3. Install Flask: pip install Flask
-4. Install Flask-HTTPAuth: pip install Flask-HTTPAuth
-5. Run: flask run
+3. Install Flask: `pip install Flask`
+4. Install Flask-HTTPAuth: `pip install Flask-HTTPAuth`
+5. Run: `flask run`
 
 
 # How to use
@@ -20,32 +20,37 @@ This was programmed on python 3.10.2. Be sure to check that your interpreter and
 
 # Available users:
 
-- User: Philipp
-- Password: password
-- Available Models: multiplicationModel, sumModel
+```
+User: Philipp
+Password: password
+Available Models: multiplicationModel, sumModel
+```
 
-
-- User: Éric
-- Password: strong_password
-- Available Models: divisionModel
-
+```
+User: Éric
+Password: strong_password
+Available Models: divisionModel
+```
 
 # Models:
 
-- ModelId: multiplicationModel
-- Inputs: "number1", "number2"
-- Outputs: The numbers multiplicated
+```
+ModelId: multiplicationModel
+Inputs: "number1", "number2"
+Outputs: The numbers multiplicated
+```
 
+```
+ModelId: sumModel
+Inputs: "number1", "number2", "number2"
+Outputs: The numbers summed up
+```
 
-- ModelId: sumModel
-- Inputs: "number1", "number2", "number2"
-- Outputs: The numbers summed up
-
-
-- ModelId: divisionModel
-- Inputs: "number1", "number2"
-- Outputs: The numbers divided
-
+```
+ModelId: divisionModel
+Inputs: "number1", "number2"
+Outputs: The numbers divided
+```
 
 # What needs to be improved:
 
