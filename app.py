@@ -38,11 +38,12 @@ def calc_model(model_id):
     if(model_pointer is None):
         return abort(404)
 
-    model_module = importlib.import_module(model_pointer.path)
-    model: ModelInterface = getattr(model_module, model_pointer.name)()
+    json_parameters = request.get_json() 
 
-    json = request.get_json() 
-    if(model.set_parameters(json)):
+    model_module = importlib.import_module(model_pointer.path)
+    model: ModelInterface = getattr(model_module, model_pointer.name)(json_parameters)
+
+    if(model.valid_parameters):
         return str(model.calc())  
     else:
         return abort(400)

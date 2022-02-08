@@ -1,6 +1,7 @@
 class ModelInterface:
-    def __init__(self):
+    def __init__(self, input_parameters: dict):
         self.parameters: dict = {}
+        self.valid_parameters = self.set_parameters(input_parameters)
 
     def calc(self) -> float:
         """In this function the logic of the model should be contained"""
